@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import CounterMechanism from './components/CounterMechanism'
+import { useState } from 'react';
 
 function App() {
+
+  const [counterValue, setCounterValue] = useState(0);
+
+  const handleOnPlus = () =>{
+    setCounterValue(counterValue + 1);
+  }
+  const handleOnReset = () =>{
+    setCounterValue(0);
+  }
+  const handleOnMinus = () =>{
+    console.log("Im minus");
+    setCounterValue(Math.max(counterValue - 1,0));
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Navbar/>
+    <CounterMechanism 
+    counterValue={counterValue}
+    handleOnPlus = {handleOnPlus} 
+    handleOnReset={handleOnReset} handleOnMinus={handleOnMinus}/>
+    </>
   );
 }
 
